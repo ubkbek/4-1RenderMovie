@@ -12,6 +12,7 @@ var elTempaleCard = document.querySelector("#template-card").content;
 let slicedMovies = movies.slice(0, 100);
 
 
+
 // get Normolized movies
 var normolizedMovieList = slicedMovies.map(movieItem => {
     return {
@@ -23,6 +24,7 @@ var normolizedMovieList = slicedMovies.map(movieItem => {
         youtubeLink: `https://www.youtube.com/watch?v=${movieItem.ytid}`
     }
 })
+
 
 
 // create categories
@@ -37,6 +39,7 @@ normolizedMovieList.forEach(item => {
 });
 
 categoryList.sort();
+
 
 
 // generate categories
@@ -125,26 +128,41 @@ generateMovies(categoryList)
 
 
 
-elForm.addEventListener("submit", function(evt){
+
+// elForm.addEventListener("submit", function(evt){
+//     evt.preventDefault();
+
+//     var selectOption = elCategorySelect.value;
+
+//     let categotisedMovies = [];
+
+//     if(selectOption === "all"){
+//         categotisedMovies = normolizedMovieList
+//     }
+//     else{
+//         categotisedMovies = normolizedMovieList.filter(function(item){
+//             return item.categories.includes(selectOption)
+//         })
+//     }
+
+//     renderMovies(categotisedMovies, elList)
+// })
+
+
+elForm.addEventListener("input", function(evt){
     evt.preventDefault();
 
-    var selectOption = elCategorySelect.value;
+    var resultArray = normolizedMovieList.filter(function(item){
+        return (item.title.toLowerCase().includes(elInputValue.value.trim().toLowerCase())) && (item.rating > elRating.value) && (item.categories.split("|").includes)(elCategorySelect.value)
+    })
 
-    let categotisedMovies = [];
+    renderMovies(resultArray, elList)
 
-    if(selectOption === "all"){
-        categotisedMovies = normolizedMovieList
-    }
-    else{
-        categotisedMovies = normolizedMovieList.filter(function(item){
-            return item.categories.includes(selectOption)
-        })
-    }
-
-    renderMovies(categotisedMovies, elList)
 })
 
+
 // create render function
+
 function renderMovies(array, place){
     place.innerHTML = null;
 
