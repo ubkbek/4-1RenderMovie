@@ -25,6 +25,8 @@ var normolizedMovieList = slicedMovies.map(movieItem => {
     }
 })
 
+renderMovies(normolizedMovieList, elList);
+
 
 
 // create categories
@@ -149,7 +151,7 @@ generateMovies(categoryList)
 // })
 
 
-elForm.addEventListener("input", function(evt){
+elForm.addEventListener("submit", function(evt){
     evt.preventDefault();
 
     var resultArray = normolizedMovieList.filter(function(item){
