@@ -155,7 +155,7 @@ elForm.addEventListener("submit", function(evt){
     evt.preventDefault();
 
     var resultArray = normolizedMovieList.filter(function(item){
-        return (item.title.toLowerCase().includes(elInputValue.value.trim().toLowerCase())) && (item.rating > elRating.value) && (item.categories.split("|").includes)(elCategorySelect.value)
+        return (item.title.toLowerCase().includes(elInputValue.value.trim().toLowerCase())) && (item.rating >= elRating.value) && (item.categories.split("|").includes)(elCategorySelect.value)
     })
 
     renderMovies(resultArray, elList)
